@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+
+        #dropfield {
+            border: 1px solid #222222;
+            background:#DDDDDD;
+            height: 250px;
+            margin-bottom:20px;
+        }
+
+        #dropfield.over {
+            background: #FFEEBB;
+            border-color: #776622;
+
+        }
+    </style>
+</head>
+<body ng-app="uploadApp" ng-cloak>
+<div class="container" ng-controller="uploadController">
+    <h1>NG-File-Upload test</h1>
+
+    <div class="jumbotron">
+        <input type="file" ng-file-select="onFileSelect($files)" class="form-control" multiple accept="image/*"/>
+        <span class="btn btn-block btn-default" ng-click="save()">SAVE</span>
+    </div>
+    <div id="dropfield" ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="over" ng-show="dropSupported">
+        Drop here
+    </div>
+    <div ng-file-drop-available="dropSupported=true"
+         ng-show="!dropSupported">HTML5 Drop File is not supported!
+    </div>
+    <div class="row">
+        <img ng-repeat="img in images" ng-src="{{img.src}}" class="img-responsive col-xs-6 col-sm-4 col-md-3"/>
+    </div>
+</div>
+<!--<script src="bower_components/ng-file-upload-shim/angular-file-upload-html5-shim.min.js"></script>-->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/ng-file-upload-shim/angular-file-upload.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
